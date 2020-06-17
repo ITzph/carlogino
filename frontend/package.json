@@ -8,11 +8,13 @@
     "dev": "ng serve --configuration hmr -o",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "format:fix": "pretty-quick --staged",
+    "eslint:fix": "lint-staged --relative"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged --relative"
+      "pre-commit": "run-s format:fix eslint:fix"
     }
   },
   "lint-staged": {
