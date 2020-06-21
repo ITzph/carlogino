@@ -19,6 +19,7 @@ phases:
     commands:
       # - echo testing...
       # - echo building...
+      - cd frontend
       - ng build --prod
 artifacts:
   files:
