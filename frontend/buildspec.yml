@@ -18,9 +18,11 @@ phases:
   build:
     commands:
       # - echo testing...
-      # - echo building...
+      - echo building...
+      - pwd
       - cd frontend
-      - ng build --prod
+      - pwd
+      - npm run-script build
 artifacts:
   files:
     - '**/*'
