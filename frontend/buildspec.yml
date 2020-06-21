@@ -19,12 +19,9 @@ phases:
     commands:
       # - echo testing...
       - echo building...
-      - pwd
-      - cd frontend
-      - pwd
-      - npm run-script build
+      - cd frontend && npm run-script build
 artifacts:
   files:
     - '**/*'
   discard-paths: no
-  base-directory: dist/personal
+  base-directory: frontend/dist/personal
