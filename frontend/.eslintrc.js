@@ -27,7 +27,7 @@ module.exports = {
     {
       files: ['src/**/*.spec.ts', 'src/**/*.d.ts'],
       parserOptions: {
-        project: './src/tsconfig.spec.json',
+        project: './tsconfig.spec.json',
       },
       // Jasmine rules
       extends: ['plugin:jasmine/recommended'],
