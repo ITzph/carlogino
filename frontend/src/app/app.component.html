@@ -1,0 +1,16 @@
+<div>Hello World from {{ platform }}!</div>
+<a
+  [routerLink]="['/']"
+  routerLinkActive="active-link"
+  [routerLinkActiveOptions]="{ exact: true }"
+  class="link"
+  >Home</a
+>
+<a
+  [routerLink]="['/profile']"
+  routerLinkActive="active-link"
+  [routerLinkActiveOptions]="{ exact: true }"
+  class="link"
+  >Profile</a
+>
+<router-outlet></router-outlet>
