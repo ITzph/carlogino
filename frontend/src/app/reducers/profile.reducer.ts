@@ -14,5 +14,10 @@ export const initialState: State = {
 export const reducer = createReducer(
   initialState,
 
-  on(ProfileActions.loadProfiles, (state) => state),
+  on(ProfileActions.updateProfileName, (state: State, prop) => {
+    return {
+      ...state,
+      name: state.name + prop.name,
+    };
+  }),
 );

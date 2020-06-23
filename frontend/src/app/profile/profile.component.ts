@@ -3,6 +3,7 @@ import { Store, select } from '@ngrx/store';
 import * as fromProfile from '../reducers/profile.reducer';
 import { Observable } from 'rxjs';
 import { getProfileName } from '../selectors/profile.selectors';
+import { updateProfileName } from '../actions/profile.actions';
 
 @Component({
   selector: 'app-profile',
@@ -16,5 +17,9 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.name$ = this.profileStore.pipe(select(getProfileName));
+  }
+
+  updateName() {
+    this.profileStore.dispatch(updateProfileName({ name: 'Yow' }));
   }
 }

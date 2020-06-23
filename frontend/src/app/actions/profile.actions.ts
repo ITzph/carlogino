@@ -1,3 +1,10 @@
 import { createAction, props } from '@ngrx/store';
 
-export const loadProfiles = createAction('[Profile] Load Profiles');
+export enum ProfileAction {
+  UpdateProfileName = '[Profile Action] Update',
+}
+
+export const updateProfileName = createAction(
+  ProfileAction.UpdateProfileName,
+  props<{ name: string }>(),
+);
