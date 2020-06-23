@@ -24,4 +24,4 @@ artifacts:
   files:
     - '**/*'
   discard-paths: no
-  base-directory: frontend/dist/personal
+  base-directory: frontend/dist
