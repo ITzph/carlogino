@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './router/app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { CustomSerializer } from './router/merged-route-serializer';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';

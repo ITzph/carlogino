@@ -6,13 +6,7 @@ import { StoreModule } from '@ngrx/store';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import * as fromProfile from '../reducers/profile.reducer';
-
-const routes: Routes = [
-  {
-    path: '',
-    component: ProfileComponent,
-  },
-];
+import { ProfileRoutingModule } from './profile-routing-module';
 
 @NgModule({
   declarations: [ProfileComponent],
@@ -20,7 +14,7 @@ const routes: Routes = [
     CommonModule,
     MatButtonModule,
     MatCardModule,
-    RouterModule.forChild(routes),
+    ProfileRoutingModule,
     StoreModule.forFeature(fromProfile.profileFeatureKey, fromProfile.reducer),
   ],
 })
