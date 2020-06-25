@@ -12,6 +12,7 @@ import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,6 +25,7 @@ import { environment } from '../environments/environment';
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    BrowserAnimationsModule,
   ],
   providers: [
     { provide: RouterStateSerializer, useClass: CustomSerializer },
