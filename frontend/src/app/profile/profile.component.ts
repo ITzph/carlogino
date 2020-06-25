@@ -4,6 +4,7 @@ import * as fromProfile from '../reducers/profile.reducer';
 import { Observable } from 'rxjs';
 import { getProfileName } from '../selectors/profile.selectors';
 import { updateProfileName } from '../actions/profile.actions';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile',
@@ -20,6 +21,14 @@ export class ProfileComponent implements OnInit {
   }
 
   updateName() {
-    this.profileStore.dispatch(updateProfileName({ name: 'Yow' }));
+    this.name$.pipe(take(1)).subscribe((name) => {
+      this.profileStore.dispatch(updateProfileName({ name: name + 'Yow' }));
+    });
+  }
+
+  resetName() {
+    this.name$.pipe(take(1)).subscribe((name) => {
+      this.profileStore.dispatch(updateProfileName({ name: 'Carlo Gino' }));
+    });
   }
 }

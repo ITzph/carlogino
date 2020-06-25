@@ -1,5 +1,4 @@
-import { Component, Inject, PLATFORM_ID, OnInit } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +8,5 @@ import { isPlatformBrowser } from '@angular/common';
 export class AppComponent implements OnInit {
   title = 'frontend';
 
-  platform: string;
-
-  constructor(@Inject(PLATFORM_ID) private platformId: any) {}
-
-  public ngOnInit(): void {
-    this.platform = isPlatformBrowser(this.platformId) ? 'Browser' : 'Server';
-  }
+  public ngOnInit(): void {}
 }
