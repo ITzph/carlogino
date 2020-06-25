@@ -6,7 +6,7 @@ import { CustomSerializer } from './router/merged-route-serializer';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
-import { HmrModule } from 'src/hmr.module';
+import { HmrModule } from '../hmr.module';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';

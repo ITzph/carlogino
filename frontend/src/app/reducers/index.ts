@@ -6,7 +6,7 @@ import {
   MetaReducer,
 } from '@ngrx/store';
 import { environment } from '../../environments/environment';
-import { stateSetter } from 'src/hmr.module';
+import { stateSetter } from '../../hmr.module';
 import { routerReducer } from '@ngrx/router-store';
 import * as fromProfile from '../reducers/profile.reducer';
 
