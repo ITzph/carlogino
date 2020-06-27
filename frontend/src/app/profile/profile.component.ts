@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { getProfileName } from '../selectors/profile.selectors';
 import { updateProfileName } from '../actions/profile.actions';
 import { take } from 'rxjs/operators';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-profile',
@@ -14,10 +15,16 @@ import { take } from 'rxjs/operators';
 export class ProfileComponent implements OnInit {
   name$: Observable<string>;
 
-  constructor(private readonly profileStore: Store<fromProfile.State>) {}
+  constructor(
+    private readonly profileStore: Store<fromProfile.State>,
+    private readonly apiService: ApiService,
+  ) {}
 
   ngOnInit(): void {
     this.name$ = this.profileStore.pipe(select(getProfileName));
+    this.apiService.fetchProfile.subscribe((e) => {
+      console.log(e);
+    });
   }
 
   updateName() {
