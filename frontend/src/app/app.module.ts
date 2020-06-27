@@ -13,7 +13,8 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpHeaderInterceptor } from './interceptors/http-header.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,6 +33,7 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [
     { provide: RouterStateSerializer, useClass: CustomSerializer },
     { provide: LocationStrategy, useClass: PathLocationStrategy },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpHeaderInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })

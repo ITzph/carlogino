@@ -2,8 +2,8 @@
   <mat-card-header>
     Dummy Title
   </mat-card-header>
-  <mat-card-content>
-    <p>Name: {{ name$ | async }}</p>
+  <mat-card-content *ngIf="profile">
+    <p>Name: {{ profile.name }}</p>
   </mat-card-content>
   <mat-card-actions>
     <button mat-raised-button color="primary" (click)="updateName()">Update name</button>
