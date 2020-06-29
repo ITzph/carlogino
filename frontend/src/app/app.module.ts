@@ -15,6 +15,7 @@ import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpHeaderInterceptor } from './interceptors/http-header.interceptor';
+import { HeaderModule } from './modules/header/header.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,6 +30,7 @@ import { HttpHeaderInterceptor } from './interceptors/http-header.interceptor';
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     BrowserAnimationsModule,
+    HeaderModule,
   ],
   providers: [
     { provide: RouterStateSerializer, useClass: CustomSerializer },
