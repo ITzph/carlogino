@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import * as fromProfile from '../reducers/profile.reducer';
+import * as fromProfile from '../../reducers/profile.reducer';
 import { ProfileRoutingModule } from './profile-routing-module';
 
 @NgModule({

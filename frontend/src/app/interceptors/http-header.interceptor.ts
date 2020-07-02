@@ -7,8 +7,6 @@ export class HttpHeaderInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log('carlo gino');
-
     request = request.clone({
       headers: request.headers.set('Authorization', 'Bearer ' + 'whatever token'),
     });
