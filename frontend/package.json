@@ -14,7 +14,8 @@
     "build:ssr": "ng build --prod && ng run frontend:server:production",
     "prerender": "ng run frontend:prerender",
     "format:fix": "pretty-quick --staged",
-    "eslint:fix": "lint-staged --relative"
+    "eslint:fix": "lint-staged --relative",
+    "mock:server": "json-server --watch mocks/db.json --port 3030"
   },
   "husky": {
     "hooks": {
@@ -29,10 +30,12 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~9.1.11",
+    "@angular/cdk": "~9.2.1",
     "@angular/common": "~9.1.11",
     "@angular/compiler": "~9.1.11",
     "@angular/core": "~9.1.11",
     "@angular/forms": "~9.1.11",
+    "@angular/material": "~9.2.1",
     "@angular/platform-browser": "~9.1.11",
     "@angular/platform-browser-dynamic": "~9.1.11",
     "@angular/platform-server": "~9.1.11",
@@ -74,6 +77,7 @@
     "husky": "^4.2.5",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
+    "json-server": "^0.16.1",
     "karma": "~5.0.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage-istanbul-reporter": "~2.1.0",

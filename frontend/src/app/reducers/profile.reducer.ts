@@ -17,7 +17,7 @@ export const reducer = createReducer(
   on(ProfileActions.updateProfileName, (state: State, prop) => {
     return {
       ...state,
-      name: state.name + prop.name,
+      name: prop.name,
     };
   }),
 );
