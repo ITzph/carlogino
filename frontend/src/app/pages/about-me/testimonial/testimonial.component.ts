@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Profiles } from 'src/app/models/profile';
 import { ApiService } from 'src/app/services/api.service';
-import { profile } from 'console';
 
 @Component({
   selector: 'app-testimonial',
@@ -13,6 +12,6 @@ export class TestimonialComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    this.apiService.fetchProfile.subscribe((profile: Profiles) => (this.testimonial = profile));
+    this.apiService.fetchProfile().subscribe((profile: Profiles) => (this.testimonial = profile));
   }
 }

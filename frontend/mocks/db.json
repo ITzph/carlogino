@@ -2,6 +2,8 @@
   "profiles": {
     "id": 1,
     "name": "Carlo Gino Catapang",
+    "alias": "Pogi",
+    "age": 3,
     "profile": "../assets/img/profile.png",
     "address": "National Capital Region, Philippines",
     "currentCompany": "Capgemini",
