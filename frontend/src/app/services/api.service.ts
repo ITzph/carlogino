@@ -13,4 +13,8 @@ export class ApiService {
   get fetchProfile() {
     return this.httpClient.get(environment.apiURL + '/profile') as Observable<Profile>;
   }
+
+  getProfile() {
+    return this.httpClient.get(environment.apiURL + '/profile');
+  }
 }

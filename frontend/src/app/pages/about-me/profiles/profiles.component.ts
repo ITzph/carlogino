@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
-import { Profiles } from 'src/app/models/profile';
+import { Profiles } from 'src/app/models/profile-model';
 
 @Component({
   selector: 'app-profiles',
@@ -13,6 +13,6 @@ export class ProfilesComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    this.apiService.fetchProfile.subscribe((profile: Profiles) => (this.person = profile));
+    this.apiService.getProfile().subscribe((profile: Profiles) => (this.person = profile));
   }
 }
