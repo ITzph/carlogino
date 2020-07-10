@@ -1,1 +1,5 @@
-<p>testimonial works!</p>
+<div *ngIf="testimonial">
+  <div class="item" *ngFor="let data of paragraph.testimonial">
+    <p>{{ data }}</p>
+  </div>
+</div>

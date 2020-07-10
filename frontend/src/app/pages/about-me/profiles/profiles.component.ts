@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/services/api.service';
+import { Profiles } from 'src/app/models/profile';
 
 @Component({
   selector: 'app-profiles',
@@ -6,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profiles.component.scss'],
 })
 export class ProfilesComponent implements OnInit {
-  constructor() {}
+  person: Profiles;
 
-  ngOnInit(): void {}
+  constructor(private apiService: ApiService) {}
+
+  ngOnInit(): void {
+    this.apiService.fetchProfile.subscribe((profile: Profiles) => (this.person = profile));
+  }
 }
