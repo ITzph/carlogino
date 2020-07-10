@@ -1,0 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.themes {
+  display: flex;
+}
+
+div > .item {
+  flex-basis: 100%;
+}
