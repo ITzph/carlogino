@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'frontend';
+  title = 'Website 2020';
 
   public ngOnInit(): void {}
 }
