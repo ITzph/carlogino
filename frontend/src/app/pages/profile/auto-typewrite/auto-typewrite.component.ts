@@ -1,6 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { of, Observable, Subject, zip, concat } from 'rxjs';
-import { delay, concatMap, debounceTime, map, withLatestFrom, mergeMap } from 'rxjs/operators';
+import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { of, Observable, concat } from 'rxjs';
+import { delay, concatMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-auto-typewrite',
@@ -9,17 +9,19 @@ import { delay, concatMap, debounceTime, map, withLatestFrom, mergeMap } from 'r
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AutoTypewriteComponent implements OnInit {
-  messages: string[] = [];
+  @Input() messages: string[] = [];
+
   message$: Observable<string>;
 
-  constructor() {}
-
   ngOnInit(): void {
-    this.messages = ['Hello world', 'Loren ipsum', 'The quick brown fox jumps over the lazy dog'];
     this.autoType();
   }
 
   autoType() {
+    const TYPING_SPEED_DELAY = 30;
+    const ERASE_SPEED_DELAY = 10;
+    const READING_DELAY = 30;
+
     let currentMessage = '';
     const array: Observable<string>[] = [];
 
@@ -30,7 +32,7 @@ export class AutoTypewriteComponent implements OnInit {
       concatMap(() => {
         currentMessage = currentMessage.slice(0, -1);
 
-        return of(currentMessage).pipe(delay(100));
+        return of(currentMessage).pipe(delay(ERASE_SPEED_DELAY));
       }),
     );
 
@@ -42,7 +44,7 @@ export class AutoTypewriteComponent implements OnInit {
           }),
           concatMap((newCharacter) => {
             currentMessage = currentMessage + newCharacter;
-            return of(currentMessage).pipe(delay(100));
+            return of(currentMessage).pipe(delay(TYPING_SPEED_DELAY));
           }),
         ),
       );
@@ -50,8 +52,7 @@ export class AutoTypewriteComponent implements OnInit {
       if (index < this.messages.length - 1) {
         array.push(
           of(null).pipe(
-            delay(1500),
-            concatMap(() => of(currentMessage)),
+            concatMap(() => of(currentMessage).pipe(delay(READING_DELAY * currentMessage.length))),
           ),
         );
 

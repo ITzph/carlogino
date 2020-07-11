@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
-import { Profiles } from 'src/app/models/profile-model';
+import { Profile } from 'src/app/models/profile';
 
 @Component({
   selector: 'app-profiles',
@@ -9,11 +9,11 @@ import { Profiles } from 'src/app/models/profile-model';
   // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProfilesComponent implements OnInit {
-  person: Profiles;
+  person: Profile;
 
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    this.apiService.getProfile().subscribe((profile: Profiles) => (this.person = profile));
+    this.apiService.getProfile().subscribe((profile: Profile) => (this.person = profile));
   }
 }

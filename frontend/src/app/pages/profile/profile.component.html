@@ -1,13 +1,9 @@
-<mat-card *ngIf="profile">
+<mat-card *ngIf="profile$ | async; let profile">
   <mat-card-header>
     Dummy Title
   </mat-card-header>
   <mat-card-content>
     <p>Name: {{ profile.name }}</p>
   </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button color="primary" (click)="updateName()">Update name</button>
-    <button mat-raised-button color="secondary" (click)="resetName()">Reset name</button>
-  </mat-card-actions>
-  <app-auto-typewrite></app-auto-typewrite>
+  <app-auto-typewrite [messages]="profile.greetings"></app-auto-typewrite>
 </mat-card>

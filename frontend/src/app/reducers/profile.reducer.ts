@@ -1,23 +1,24 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import * as ProfileActions from '../actions/profile.actions';
+import { Profile } from '../models/profile';
 
 export const profileFeatureKey = 'profile';
 
 export interface State {
-  name: string;
+  profile: Profile;
 }
 
 export const initialState: State = {
-  name: 'Carlo Gino',
+  profile: null,
 };
 
 export const reducer = createReducer(
   initialState,
 
-  on(ProfileActions.updateProfileName, (state: State, prop) => {
+  on(ProfileActions.setProfile, (state: State, prop) => {
     return {
       ...state,
-      name: prop.name,
+      profile: prop.profile,
     };
   }),
 );

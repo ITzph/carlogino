@@ -1,20 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import * as fromProfile from '../../reducers/profile.reducer';
 import { Observable } from 'rxjs';
-import { getProfileName } from '../../selectors/profile.selectors';
-import { updateProfileName } from '../../actions/profile.actions';
+import { getProfile } from '../../selectors/profile.selectors';
 import { take } from 'rxjs/operators';
 import { ApiService } from '../../services/api.service';
 import { Profile } from '../../models/profile';
+import { setProfile } from 'src/app/actions/profile.actions';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProfileComponent implements OnInit {
-  profile: Profile;
+  profile$: Observable<Profile>;
 
   constructor(
     private readonly profileStore: Store<fromProfile.State>,
@@ -22,10 +23,10 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.name$ = this.profileStore.pipe(select(getProfileName));
-    this.apiService.fetchProfile.subscribe(
+    this.profile$ = this.profileStore.pipe(select(getProfile));
+    this.apiService.getProfile().subscribe(
       (profile) => {
-        this.profile = profile || Profile.defaultInstance();
+        this.updateProfile(profile);
       },
       (error) => {
         console.error(error);
@@ -33,21 +34,7 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  updateName() {
-    if (this.profile) {
-      this.profile.name += 'Yow';
-    }
-    // this.name$.pipe(take(1)).subscribe((name) => {
-    //   this.profileStore.dispatch(updateProfileName({ name: name + 'Yow' }));
-    // });
-  }
-
-  resetName() {
-    // this.name$.pipe(take(1)).subscribe((name) => {
-    //   this.profileStore.dispatch(updateProfileName({ name: 'Carlo Gino' }));
-    // });
-    if (this.profile) {
-      this.profile.name = 'Carlo Gino';
-    }
+  updateProfile(profile: Profile) {
+    this.profileStore.dispatch(setProfile({ profile }));
   }
 }
