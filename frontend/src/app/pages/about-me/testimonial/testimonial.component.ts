@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { ApiService } from 'src/app/services/api.service';
 import { Profiles } from 'src/app/models/profile-model';
 
@@ -9,10 +8,11 @@ import { Profiles } from 'src/app/models/profile-model';
   styleUrls: ['./testimonial.component.scss'],
 })
 export class TestimonialComponent implements OnInit {
-  testimonial: Profiles;
+  testimony: Profiles;
+
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    this.apiService.getProfile().subscribe((profile: Profiles) => (this.testimonial = profile));
+    this.apiService.getProfile().subscribe((profile: Profiles) => (this.testimony = profile));
   }
 }

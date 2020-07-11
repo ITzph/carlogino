@@ -1,17 +1,17 @@
-<div *ngIf="person">
-  <div class="item">
-    <div class="box">
+<section *ngIf="person">
+  <section class="item">
+    <section class="box">
       <p>{{ person.name }}</p>
       <p>{{ person.address }}</p>
-    </div>
+    </section>
 
-    <div class="box">
+    <section class="box">
       <p>{{ person.currentCompany }}</p>
       <p>{{ person.currentRole }}</p>
-    </div>
-  </div>
+    </section>
+  </section>
 
-  <div class="profile">
+  <section class="profile">
     <img mat-card-image [src]="person.image" />
-  </div>
-</div>
+  </section>
+</section>

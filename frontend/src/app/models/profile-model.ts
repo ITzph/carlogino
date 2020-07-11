@@ -1,6 +1,6 @@
 export class Profiles {
   name: string;
-  profile: String;
+  image: String;
   address: string;
   currentCompany: string;
   currentRole: String;
