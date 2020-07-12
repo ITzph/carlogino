@@ -1,3 +1,10 @@
+@import '../../../styles/variables';
+
+.main-header {
+  padding: 0 $padding-small;
+  margin-bottom: $margin-small;
+}
+
 .link {
   text-decoration: none;
   &:not(:last-child) {

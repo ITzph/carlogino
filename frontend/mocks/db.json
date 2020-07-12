@@ -1,8 +1,6 @@
 {
   "profile": {
-    "id": 1,
     "name": "Carlo Gino Catapang",
-    "alias": "Pogi",
     "age": 3,
     "image": "../assets/img/profile.png",
     "address": "National Capital Region, Philippines",
@@ -15,6 +13,17 @@
       "Quam lacus suspendisse faucibus interdum posuere lorem. Nibh ipsum consequat nisl vel. Gravida arcu ac tortor dignissim convallis aenean et tortor. Nisl rhoncus mattis rhoncus urna neque viverra justo. Turpis massa tincidunt dui ut ornare lectus sit. Suspendisse faucibus interdum posuere lorem ipsum. Enim sit amet venenatis urna cursus eget nunc. Nisi vitae suscipit tellus mauris a diam maecenas sed. Pharetra sit amet aliquam id diam maecenas ultricies. Ut aliquam purus sit amet luctus venenatis. Nisl pretium fusce id velit ut tortor pretium viverra suspendisse.",
       "Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies. Quis commodo odio aenean sed adipiscing. Donec ac odio tempor orci dapibus. Consequat ac felis donec et odio. Lectus arcu bibendum at varius vel pharetra vel turpis. Tellus rutrum tellus pellentesque eu tincidunt tortor aliquam nulla facilisi. Semper quis lectus nulla at volutpat diam ut venenatis. Mollis nunc sed id semper risus.",
       "In iaculis nunc sed augue lacus viverra vitae congue eu. Amet risus nullam eget felis eget nunc lobortis mattis aliquam. Feugiat in ante metus dictum at tempor commodo. Sed tempus urna et pharetra pharetra massa massa ultricies. Auctor urna nunc id cursus metus. Nulla facilisi morbi tempus iaculis urna id. Risus commodo viverra maecenas accumsan lacus vel. Amet mauris commodo quis imperdiet."
+    ],
+    "greetings": [
+      "The quick brown fox jumps over the lazy dog.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+      "Pharetra et ultrices neque ornare aenean euismod elementum.",
+      "Tellus pellentesque eu tincidunt tortor aliquam nulla facilisi cras fermentum.",
+      "Et pharetra pharetra massa massa ultricies mi quis hendrerit dolor.",
+      "A scelerisque purus semper eget.",
+      "Ac placerat vestibulum lectus mauris ultrices eros in cursus.",
+      "Purus in mollis nunc sed id semper risus in hendrerit.",
+      "Welcome to my Page!"
     ]
   }
 }

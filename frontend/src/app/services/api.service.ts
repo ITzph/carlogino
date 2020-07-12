@@ -3,8 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable, throwError } from 'rxjs';
 
-import { tap, catchError } from 'rxjs/operators';
-import { Profiles } from '../models/profile-model';
+import { catchError } from 'rxjs/operators';
 import { Profile } from '../models/profile';
 
 @Injectable({
@@ -13,13 +12,9 @@ import { Profile } from '../models/profile';
 export class ApiService {
   constructor(private readonly httpClient: HttpClient) {}
 
-  get fetchProfile() {
-    return this.httpClient.get(environment.apiURL + '/profile') as Observable<Profile>;
-  }
-
-  getProfile(): Observable<Profiles> {
+  getProfile(): Observable<Profile> {
     return this.httpClient
-      .get<Profiles>(environment.apiURL + '/profile')
+      .get<Profile>(environment.apiURL + '/profile')
       .pipe(catchError(this.handleError));
   }
 

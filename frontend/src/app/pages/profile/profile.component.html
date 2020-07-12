@@ -1,12 +1,12 @@
-<mat-card *ngIf="profile">
-  <mat-card-header>
-    Dummy Title
-  </mat-card-header>
-  <mat-card-content>
-    <p>Name: {{ profile.name }}</p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button color="primary" (click)="updateName()">Update name</button>
-    <button mat-raised-button color="secondary" (click)="resetName()">Reset name</button>
-  </mat-card-actions>
-</mat-card>
+<ng-container *ngIf="profile$ | async; let profile">
+  <section class="greetings">
+    <app-auto-typewrite
+      [messages]="profile.greetings"
+      (completed)="toggleTranscript($event)"
+    ></app-auto-typewrite>
+    <app-greetings-transcript
+      [greetings]="profile.greetings"
+      *ngIf="isTranscriptVisible"
+    ></app-greetings-transcript>
+  </section>
+</ng-container>

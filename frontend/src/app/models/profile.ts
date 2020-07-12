@@ -1,13 +1,21 @@
 export class Profile {
-  public name: string;
-  public alias: string;
-  public age: number;
+  name: string;
+  image: string;
+  address: string;
+  currentCompany: string;
+  currentRole: string;
+  testimonial: string;
+  greetings: string[];
 
   static defaultInstance(): Profile {
     return {
       name: '',
-      alias: '',
-      age: 0,
+      image: '',
+      address: '',
+      currentCompany: '',
+      currentRole: '',
+      testimonial: '',
+      greetings: [],
     };
   }
 }

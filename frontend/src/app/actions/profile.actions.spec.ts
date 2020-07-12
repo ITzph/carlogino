@@ -1,9 +1,10 @@
 import * as fromProfile from './profile.actions';
+import { Profile } from '../models/profile';
 
 describe('loadProfiles', () => {
   it('should return an action', () => {
-    expect(fromProfile.updateProfileName({ name: '' }).type).toBe(
-      fromProfile.ProfileAction.UpdateProfileName,
+    expect(fromProfile.setProfile({ profile: Profile.defaultInstance() }).type).toBe(
+      fromProfile.ProfileAction.SetProfile,
     );
   });
 });

@@ -8,5 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class AboutSiteComponent implements OnInit {
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // test
+  }
 }
