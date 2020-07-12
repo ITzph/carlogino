@@ -1,9 +1,5 @@
-<mat-card *ngIf="profile$ | async; let profile">
-  <mat-card-header>
-    Dummy Title
-  </mat-card-header>
-  <mat-card-content>
-    <p>Name: {{ profile.name }}</p>
-  </mat-card-content>
-  <app-auto-typewrite [messages]="profile.greetings"></app-auto-typewrite>
-</mat-card>
+<ng-container *ngIf="profile$ | async; let profile">
+  <section class="greetings">
+    <app-auto-typewrite [messages]="profile.greetings"></app-auto-typewrite>
+  </section>
+</ng-container>
