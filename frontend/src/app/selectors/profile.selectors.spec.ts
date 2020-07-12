@@ -7,6 +7,8 @@ describe('Profile Selectors', () => {
       [fromProfile.profileFeatureKey]: {},
     });
 
-    expect(result).toEqual({});
+    expect(result).toEqual({
+      profile: null,
+    });
   });
 });

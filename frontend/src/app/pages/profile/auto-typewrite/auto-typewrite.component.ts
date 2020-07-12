@@ -20,7 +20,7 @@ export class AutoTypewriteComponent implements OnInit {
   autoType() {
     const TYPING_SPEED_DELAY = 30;
     const ERASE_SPEED_DELAY = 10;
-    const READING_DELAY = 30;
+    const READING_DELAY_MULTIPLIER = 30;
 
     let currentMessage = '';
     const array: Observable<string>[] = [];
@@ -52,7 +52,9 @@ export class AutoTypewriteComponent implements OnInit {
       if (index < this.messages.length - 1) {
         array.push(
           of(null).pipe(
-            concatMap(() => of(currentMessage).pipe(delay(READING_DELAY * currentMessage.length))),
+            concatMap(() =>
+              of(currentMessage).pipe(delay(READING_DELAY_MULTIPLIER * currentMessage.length)),
+            ),
           ),
         );
 

@@ -8,9 +8,10 @@ import { MatCardModule } from '@angular/material/card';
 import * as fromProfile from '../../reducers/profile.reducer';
 import { ProfileRoutingModule } from './profile-routing-module';
 import { AutoTypewriteComponent } from './auto-typewrite/auto-typewrite.component';
+import { GreetingsTranscriptComponent } from './greetings-transcript/greetings-transcript.component';
 
 @NgModule({
-  declarations: [ProfileComponent, AutoTypewriteComponent],
+  declarations: [ProfileComponent, AutoTypewriteComponent, GreetingsTranscriptComponent],
   imports: [
     CommonModule,
     MatButtonModule,
