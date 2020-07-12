@@ -3,7 +3,6 @@ import { Store, select } from '@ngrx/store';
 import * as fromProfile from '../../reducers/profile.reducer';
 import { Observable } from 'rxjs';
 import { getProfile } from '../../selectors/profile.selectors';
-import { take } from 'rxjs/operators';
 import { ApiService } from '../../services/api.service';
 import { Profile } from '../../models/profile';
 import { setProfile } from 'src/app/actions/profile.actions';

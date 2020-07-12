@@ -19,5 +19,6 @@ import { GreetingsTranscriptComponent } from './greetings-transcript/greetings-t
     ProfileRoutingModule,
     StoreModule.forFeature(fromProfile.profileFeatureKey, fromProfile.reducer),
   ],
+  exports: [ProfileComponent, AutoTypewriteComponent, GreetingsTranscriptComponent],
 })
 export class ProfileModule {}

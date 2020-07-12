@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProfileComponent } from './profile.component';
+import { ProfileModule } from './profile.module';
+import { StoreModule } from '@ngrx/store';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import * as fromProfile from '../../reducers/profile.reducer';
+import { ApiService } from 'src/app/services/api.service';
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
@@ -8,7 +13,13 @@ describe('ProfileComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ProfileComponent],
+      imports: [
+        ProfileModule,
+        HttpClientTestingModule,
+        StoreModule.forRoot({}),
+        StoreModule.forFeature(fromProfile.profileFeatureKey, fromProfile.reducer),
+      ],
+      providers: [ApiService],
     }).compileComponents();
   }));
 
