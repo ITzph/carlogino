@@ -15,6 +15,7 @@ import { setProfile } from 'src/app/actions/profile.actions';
 })
 export class ProfileComponent implements OnInit {
   profile$: Observable<Profile>;
+  isTranscriptVisible = false;
 
   constructor(
     private readonly profileStore: Store<fromProfile.State>,
@@ -29,11 +30,16 @@ export class ProfileComponent implements OnInit {
       },
       (error) => {
         console.error(error);
+        this.updateProfile(Profile.defaultInstance());
       },
     );
   }
 
   updateProfile(profile: Profile) {
     this.profileStore.dispatch(setProfile({ profile }));
+  }
+
+  toggleTranscript(isVisible: boolean) {
+    this.isTranscriptVisible = isVisible;
   }
 }

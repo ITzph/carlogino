@@ -1,5 +1,12 @@
 <ng-container *ngIf="profile$ | async; let profile">
   <section class="greetings">
-    <app-auto-typewrite [messages]="profile.greetings"></app-auto-typewrite>
+    <app-auto-typewrite
+      [messages]="profile.greetings"
+      (completed)="toggleTranscript($event)"
+    ></app-auto-typewrite>
+    <app-greetings-transcript
+      [greetings]="profile.greetings"
+      *ngIf="isTranscriptVisible"
+    ></app-greetings-transcript>
   </section>
 </ng-container>
