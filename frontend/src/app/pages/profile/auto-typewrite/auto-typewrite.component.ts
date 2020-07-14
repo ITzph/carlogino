@@ -6,7 +6,7 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { of, Observable, concat } from 'rxjs';
+import { of, Observable, concat, from } from 'rxjs';
 import { delay, concatMap, tap } from 'rxjs/operators';
 
 @Component({
@@ -31,10 +31,27 @@ export class AutoTypewriteComponent implements OnInit {
     this.autoType();
   }
 
+  private autoType() {
+    const array: Observable<string>[] = [];
+
+    this.messages.forEach((element, index) => {
+      array.push(this.addIndividualCharacters$(element));
+
+      if (index < this.messages.length - 1) {
+        array.push(this.pauseBeforeDeleting$());
+        array.push(this.deleteCurrentMessage$());
+      } else {
+        array.push(this.emitCompleteTyping$());
+      }
+    });
+
+    this.message$ = concat(...array);
+  }
+
   private addIndividualCharacters$(element) {
     return of(element).pipe(
       concatMap((message) => {
-        return of(...message);
+        return from(message);
       }),
       concatMap((newCharacter) => {
         this.currentMessage = this.currentMessage + newCharacter;
@@ -46,7 +63,7 @@ export class AutoTypewriteComponent implements OnInit {
   private deleteCurrentMessage$() {
     return of(null).pipe(
       concatMap(() => {
-        return of(...this.currentMessage);
+        return from(this.currentMessage);
       }),
       concatMap(() => {
         this.currentMessage = this.currentMessage.slice(0, -1);
@@ -70,22 +87,5 @@ export class AutoTypewriteComponent implements OnInit {
     return of(null).pipe(
       concatMap(() => of(this.currentMessage).pipe(tap(() => this.completed.emit(true)))),
     );
-  }
-
-  private autoType() {
-    const array: Observable<string>[] = [];
-
-    this.messages.forEach((element, index) => {
-      array.push(this.addIndividualCharacters$(element));
-
-      if (index < this.messages.length - 1) {
-        array.push(this.pauseBeforeDeleting$());
-        array.push(this.deleteCurrentMessage$());
-      } else {
-        array.push(this.emitCompleteTyping$());
-      }
-    });
-
-    this.message$ = concat(...array);
   }
 }
