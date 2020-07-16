@@ -6,8 +6,8 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { of, Observable, concat, from } from 'rxjs';
-import { delay, concatMap, tap } from 'rxjs/operators';
+import { of, Observable, concat, from, BehaviorSubject } from 'rxjs';
+import { delay, concatMap, tap, takeWhile, take, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-auto-typewrite',
@@ -21,14 +21,31 @@ export class AutoTypewriteComponent implements OnInit {
 
   private readonly TYPING_SPEED_DELAY = 30;
   private readonly ERASE_SPEED_DELAY = 10;
-  private readonly READING_DELAY_MULTIPLIER = 30;
+  private readonly READING_DELAY_MULTIPLIER = 20;
 
-  private currentMessage = '';
+  isTyping = true;
 
-  message$: Observable<string>;
+  message$ = new BehaviorSubject<string>('');
 
   ngOnInit(): void {
-    this.autoType();
+    this.autoType().subscribe(this.message$);
+  }
+
+  public skipAutoType() {
+    this.message$.next(this.messages[this.messages.length - 1]);
+    this.setIsTyping(false);
+  }
+
+  public retriggerAutoType() {
+    this.setIsTyping(true);
+    this.message$ = new BehaviorSubject<string>('');
+    this.autoType().subscribe(this.message$);
+  }
+
+  private setIsTyping(isTyping: boolean) {
+    this.message$.complete();
+    this.isTyping = isTyping;
+    this.completed.emit(!isTyping);
   }
 
   private autoType() {
@@ -45,47 +62,48 @@ export class AutoTypewriteComponent implements OnInit {
       }
     });
 
-    this.message$ = concat(...array);
+    return concat(...array).pipe(takeWhile(() => this.isTyping));
   }
 
-  private addIndividualCharacters$(element) {
+  private addIndividualCharacters$(element: string) {
     return of(element).pipe(
       concatMap((message) => {
         return from(message);
       }),
       concatMap((newCharacter) => {
-        this.currentMessage = this.currentMessage + newCharacter;
-        return of(this.currentMessage).pipe(delay(this.TYPING_SPEED_DELAY));
+        const newMessage = this.message$.getValue() + newCharacter;
+        return of(newMessage).pipe(delay(this.TYPING_SPEED_DELAY));
       }),
     );
   }
 
   private deleteCurrentMessage$() {
-    return of(null).pipe(
-      concatMap(() => {
-        return from(this.currentMessage);
-      }),
-      concatMap(() => {
-        this.currentMessage = this.currentMessage.slice(0, -1);
-
-        return of(this.currentMessage).pipe(delay(this.ERASE_SPEED_DELAY));
+    return this.message$.asObservable().pipe(
+      takeWhile((message) => message.length > 0),
+      delay(this.ERASE_SPEED_DELAY),
+      map((message) => {
+        return message.slice(0, -1);
       }),
     );
   }
 
   private pauseBeforeDeleting$() {
-    return of(null).pipe(
-      concatMap(() =>
-        of(this.currentMessage).pipe(
-          delay(this.READING_DELAY_MULTIPLIER * this.currentMessage.length),
-        ),
-      ),
+    return this.message$.asObservable().pipe(
+      take(1),
+      concatMap((message) => {
+        return of(message).pipe(
+          delay(this.READING_DELAY_MULTIPLIER * this.message$.getValue().length),
+        );
+      }),
     );
   }
 
   private emitCompleteTyping$() {
-    return of(null).pipe(
-      concatMap(() => of(this.currentMessage).pipe(tap(() => this.completed.emit(true)))),
+    return this.message$.asObservable().pipe(
+      take(1),
+      tap(() => {
+        this.setIsTyping(false);
+      }),
     );
   }
 }
