@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  hmr: false
+  hmr: false,
+  apiURL: 'http://localhost:3030', // Dummy DEV/SIT/UAT url
 };
 
 /*

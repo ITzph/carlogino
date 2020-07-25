@@ -5,6 +5,6 @@ export const selectProfileState = createFeatureSelector<fromProfile.State>(
   fromProfile.profileFeatureKey,
 );
 
-export const getProfileName = createSelector(selectProfileState, (state) => {
-  return state.name;
+export const getProfile = createSelector(selectProfileState, (state) => {
+  return state.profile;
 });

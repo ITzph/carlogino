@@ -7,6 +7,7 @@
     "dev": "ng serve --configuration hmr -o",
     "build": "ng build --prod",
     "test": "ng test",
+    "test:headless": "ng test --browsers ChromeHeadless",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "dev:ssr": "ng run frontend:serve-ssr",
@@ -14,7 +15,8 @@
     "build:ssr": "ng build --prod && ng run frontend:server:production",
     "prerender": "ng run frontend:prerender",
     "format:fix": "pretty-quick --staged",
-    "eslint:fix": "lint-staged --relative"
+    "eslint:fix": "lint-staged --relative",
+    "mock:server": "json-server --watch mocks/db.json --port 3030"
   },
   "husky": {
     "hooks": {
@@ -29,10 +31,12 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~9.1.11",
+    "@angular/cdk": "~9.2.1",
     "@angular/common": "~9.1.11",
     "@angular/compiler": "~9.1.11",
     "@angular/core": "~9.1.11",
     "@angular/forms": "~9.1.11",
+    "@angular/material": "^9.2.4",
     "@angular/platform-browser": "~9.1.11",
     "@angular/platform-browser-dynamic": "~9.1.11",
     "@angular/platform-server": "~9.1.11",
@@ -44,6 +48,7 @@
     "@ngrx/store-devtools": "^9.2.0",
     "@nguniversal/express-engine": "^9.1.1",
     "express": "^4.15.2",
+    "ngx-spinner": "^9.0.2",
     "normalize.css": "^8.0.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
@@ -74,6 +79,7 @@
     "husky": "^4.2.5",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
+    "json-server": "^0.16.1",
     "karma": "~5.0.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage-istanbul-reporter": "~2.1.0",

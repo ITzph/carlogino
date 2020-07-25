@@ -1,4 +1,5 @@
 export const environment = {
-  production: true,
-  hmr: false
+  production: false,
+  hmr: false,
+  apiURL: 'http://localhost:3030', // This should be backend URL
 };

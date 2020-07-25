@@ -1,0 +1,23 @@
+<ng-container *ngIf="profile$ | async; let profile; else: loading">
+  <section class="greetings">
+    <app-auto-typewrite
+      [messages]="profile.greetings"
+      (completed)="toggleTranscript($event)"
+    ></app-auto-typewrite>
+    <app-greetings-transcript
+      [greetings]="profile.greetings"
+      *ngIf="isTranscriptVisible"
+    ></app-greetings-transcript>
+  </section>
+</ng-container>
+
+<ng-template #loading>
+  <ngx-spinner
+    bdColor="rgba(0, 0, 0, 0.8)"
+    size="medium"
+    color="#fff"
+    type="ball-zig-zag-deflect"
+    [fullScreen]="true"
+    ><p style="color: white;">Weight lungs...</p></ngx-spinner
+  >
+</ng-template>

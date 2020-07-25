@@ -11,6 +11,7 @@ module.exports = {
       'error',
       { type: 'element', prefix: 'app', style: 'kebab-case' },
     ],
+    'no-console': ['error', { allow: ['warn', 'error'] }],
   },
   overrides: [
     // Add this rules, if you use inline templates inside *.component.ts files

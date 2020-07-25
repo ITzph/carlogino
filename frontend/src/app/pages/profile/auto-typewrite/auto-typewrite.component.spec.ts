@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProfileComponent } from './profile.component';
+import { AutoTypewriteComponent } from './auto-typewrite.component';
 
-describe('ProfileComponent', () => {
-  let component: ProfileComponent;
-  let fixture: ComponentFixture<ProfileComponent>;
+describe('AutoTypewriteComponent', () => {
+  let component: AutoTypewriteComponent;
+  let fixture: ComponentFixture<AutoTypewriteComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ProfileComponent],
+      declarations: [AutoTypewriteComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProfileComponent);
+    fixture = TestBed.createComponent(AutoTypewriteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
