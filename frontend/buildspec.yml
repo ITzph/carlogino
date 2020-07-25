@@ -17,7 +17,6 @@ phases:
       - cd frontend && npm install
   build:
     commands:
-      # - echo testing...
       - echo building...
       - cd frontend && npm run-script build
 artifacts:
