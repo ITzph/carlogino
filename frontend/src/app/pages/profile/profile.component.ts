@@ -6,6 +6,8 @@ import { getProfile } from '../../selectors/profile.selectors';
 import { ApiService } from '../../services/api.service';
 import { Profile } from '../../models/profile';
 import { setProfile } from 'src/app/actions/profile.actions';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { tap, finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile',
@@ -20,19 +22,29 @@ export class ProfileComponent implements OnInit {
   constructor(
     private readonly profileStore: Store<fromProfile.State>,
     private readonly apiService: ApiService,
+    private readonly spinner: NgxSpinnerService,
   ) {}
 
   ngOnInit(): void {
+    // TODO optimize to prevent loading when there is a store value
     this.profile$ = this.profileStore.pipe(select(getProfile));
-    this.apiService.getProfile().subscribe(
-      (profile) => {
-        this.updateProfile(profile);
-      },
-      (error) => {
-        console.error(error);
-        this.updateProfile(Profile.defaultInstance());
-      },
-    );
+    this.spinner.show();
+    this.apiService
+      .getProfile()
+      .pipe(
+        finalize(() => {
+          this.spinner.hide();
+        }),
+      )
+      .subscribe(
+        (profile) => {
+          this.updateProfile(profile);
+        },
+        (error) => {
+          console.error(error);
+          this.updateProfile(Profile.defaultInstance());
+        },
+      );
   }
 
   updateProfile(profile: Profile) {

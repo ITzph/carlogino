@@ -11,3 +11,5 @@
     </p>
   </article>
 </section>
+<button (click)="skipAutoType()" *ngIf="isTyping">Skip</button>
+<button (click)="retriggerAutoType()" *ngIf="!isTyping">Repeat</button>
