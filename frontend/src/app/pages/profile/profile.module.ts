@@ -9,6 +9,7 @@ import * as fromProfile from '../../reducers/profile.reducer';
 import { ProfileRoutingModule } from './profile-routing-module';
 import { AutoTypewriteComponent } from './auto-typewrite/auto-typewrite.component';
 import { GreetingsTranscriptComponent } from './greetings-transcript/greetings-transcript.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [ProfileComponent, AutoTypewriteComponent, GreetingsTranscriptComponent],
@@ -16,6 +17,7 @@ import { GreetingsTranscriptComponent } from './greetings-transcript/greetings-t
     CommonModule,
     MatButtonModule,
     MatCardModule,
+    NgxSpinnerModule,
     ProfileRoutingModule,
     StoreModule.forFeature(fromProfile.profileFeatureKey, fromProfile.reducer),
   ],
